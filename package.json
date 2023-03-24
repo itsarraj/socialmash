@@ -1,0 +1,22 @@
+{
+    "name": "socialmash",
+    "version": "1.0.0",
+    "description": "socialmash is a social media website",
+    "main": "index.js",
+    "scripts": {
+        "test": "nodemon index.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:itsarraj/socialmash.git"
+    },
+    "keywords": [
+        "socailmash"
+    ],
+    "author": "itsarraj",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/itsarraj/socialmash/issues"
+    },
+    "homepage": "https://github.com/itsarraj/socialmash#readme"
+}
