@@ -7,6 +7,10 @@ const port = 8000;
 // app.use('/' , require('./routes/index')); // routes/index is fetched by default from routes
 app.use('/', require('./routes'));
 
+// Setup the view engine
+app.set('view engine', 'ejs');
+app.set('views', './views');
+
 // fire up the server
 app.listen(port, function (err) {
     if (err) {
