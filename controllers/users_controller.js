@@ -1,8 +1,26 @@
+const express = require('express');
+const cookieParser = require('cookie-parser');
+const app = express();
+app.use(cookieParser());
+
 const User = require('../models/user');
 
 module.exports.profile = function (req, res) {
+    console.log(res.headers);
+    // let user_id_fetched = res.cookie.user_id;
+    // User.findOne({ id: req.body.id }, function (err, user) {});
+
+    // User.findOne({ _id: { $eq: res.cookie.user_id } }, function (err, user) {
+    //     console.log(_id);
+    // });
+    // // if ((user.id == res.cookie.user_id)) {
+
+    // }
+    //
     return res.render('user_profile', {
         title: 'User Profile',
+        // email: req.body.email,
+        // name: req.body.name,
     });
 };
 //  Render the signup page
