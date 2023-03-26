@@ -16,6 +16,7 @@ module.exports.profile = function (req, res) {
     // // if ((user.id == res.cookie.user_id)) {
 
     // }
+
     //
     return res.render('user_profile', {
         title: 'User Profile',
