@@ -1,0 +1,33 @@
+<link rel="stylesheet" href="/css/signup.css" />
+<div class="container">
+    <form id="form" action="/users/create" method="POST" class="form">
+        <h2>Sign Up</h2>
+        <div class="form-control">
+            <label for="username">Username</label>
+            <input type="text" id="username" placeholder="Enter username" />
+            <small>Error message</small>
+        </div>
+        <div class="form-control">
+            <label for="email">Email</label>
+            <input type="text" id="email" placeholder="Enter email" />
+            <small>Error message</small>
+        </div>
+        <div class="form-control">
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Enter password" />
+            <small>Error message</small>
+        </div>
+        <div class="form-control">
+            <label for="password">Confirm Password</label>
+            <input
+                type="password"
+                id="password2"
+                placeholder="Enter password"
+            />
+            <small>Error message</small>
+        </div>
+        <input type="submit" value="Sign Up" class="button-design" />
+    </form>
+</div>
+
+<script src="/js/signup.js"></script>
