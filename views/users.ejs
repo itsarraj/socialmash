@@ -7,11 +7,9 @@
         <title><%= title%></title>
     </head>
     <body>
-        <h1>User / <%= title%></h1>
-        <ol>
-            <% for ( let i = 1 ; i < len ; i++) {%>
-            <li>User : <%= i%></li>
-            <%}%>
-        </ol>
+        <!--  -->
+        <%- include('_header.ejs'); -%>
+        <!--  -->
+        <%- include('_footer.ejs'); -%>
     </body>
 </html>
