@@ -1,16 +1,21 @@
 const User = require('../models/user');
 
 module.exports.profile = function (req, res) {
-    console.log(req.cookies.user_id);
-
-    // if (req.cookies.user_id) {
-    //     User.findById(req.cookies.user_id).then(function ());
-    // } else {
-    //     return res.redirect('/users/sign-in');
-    // }
-    // return res.render('user_profile', {
-    //     title: 'User Profile',
-    // });
+    if (req.cookies.user_id) {
+        User.findById(req.cookies.user_id, function (err, user) {
+            if (user) {
+                return res.render('user_profile', {
+                    title: 'User Profile',
+                    user: user,
+                });
+            } else {
+                // Anyone can access cookies without actually being logged in .. so send them to sign in
+                return res.redirect('/users/sign-in');
+            }
+        });
+    } else {
+        return res.redirect('/users/sign-in');
+    }
 };
 //  Render the signup page
 module.exports.signup = function (req, res) {
