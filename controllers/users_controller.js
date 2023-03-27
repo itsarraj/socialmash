@@ -10,13 +10,19 @@ module.exports.profile = function (req, res) {
                 });
             } else {
                 // Anyone can access cookies without actually being logged in .. so send them to sign in
-                return res.redirect('/users/sign-in');
+                return res.redirect('/users/profile');
             }
         });
     } else {
         return res.redirect('/users/sign-in');
     }
 };
+
+module.exports.signout = function (req, res) {
+    res.clearCookie('user_id');
+    return res.redirect('/users/sign-in');
+};
+
 //  Render the signup page
 module.exports.signup = function (req, res) {
     return res.render('user_sign_up', {
