@@ -8,21 +8,19 @@ passport.use(
         {
             usernameField: 'email',
         },
-        function (email, password, done) {
+        async function (email, password, done) {
             // find the user and establish the identity
-            User.findOne({ email: email }, function (err, user) {
-                if (err) {
-                    console.log(`Error in Finding User :: ${err}`);
-                    return done(err);
-                }
-
+            try {
+                let user = await User.findOne({ email: email });
                 if (!user || user.password != password) {
                     console.log(`Invalid USERNAME/PASSWORD :: ${err}`);
                     return done(null, false);
                 }
-
                 return done(null, user);
-            });
+            } catch (error) {
+                console.log(`Error in Finding User :: ${err}`);
+                return done(err);
+            }
         }
     )
 );
@@ -34,14 +32,14 @@ passport.serializeUser(function (user, done) {
 });
 
 // Deserialize user functions
-passport.deserializeUser(function (id, done) {
-    User.findById(id, function (err, user) {
-        if (err) {
-            console.log(`Error in Finding User :: ${err}`);
-            return done(err);
-        }
+passport.deserializeUser(async function (id, done) {
+    try {
+        let user = await User.findById(id);
         return done(null, user);
-    });
+    } catch (error) {
+        console.log(`Error in Finding User :: ${error}`);
+        return done(error);
+    }
 });
 
 // check if the user is authenticated

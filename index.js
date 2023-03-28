@@ -8,7 +8,7 @@ const db = require('./config/mongoose');
 const session = require('express-session');
 const passport = require('passport');
 const passportLocal = require('./config/passport-local-strategy');
-const MongoStore = require('connect-mongo')(session);
+const MongoStore = require('connect-mongo');
 
 app.use(express.urlencoded());
 app.use(cookieParser());
@@ -30,14 +30,15 @@ app.use(
     session({
         name: 'socialmash',
         // TODO: Change the secret before deploying
-        secret: 'xxxxxxxxxxxxxxxxxx',
+        secret: 'VmYq3s6v',
         saveUninitialized: false,
         resave: false,
         cookie: {
             maxAge: 1000 * 60 * 10, // 10 minutes
         },
-        store: new MongoStore(
+        store: MongoStore.create(
             {
+                mongoUrl: 'mongodb://127.0.0.1/socialmash_development',
                 mongooseConnection: db,
                 autoRemove: 'disabled',
             },
