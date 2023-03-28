@@ -8,7 +8,7 @@ const db = require('./config/mongoose');
 const session = require('express-session');
 const passport = require('passport');
 const passportLocal = require('./config/passport-local-strategy');
-const MongoStore = require('connect-mongo')(session);
+const MongoStore = require('connect-mongo');
 
 app.use(express.urlencoded());
 app.use(cookieParser());
@@ -36,13 +36,14 @@ app.use(
         cookie: {
             maxAge: 1000 * 60 * 10, // 10 minutes
         },
-        store: new MongoStore(
+        store: MongoStore.create(
             {
+                mongoUrl: 'mongodb://127.0.0.1/socialmash_development',
                 mongooseConnection: db,
                 autoRemove: 'disabled',
             },
             function (err) {
-                console.log(err || 'connec-mongodb setup ok');
+                console.log(err || 'connect-mongodb setup ok');
             }
         ),
     })
