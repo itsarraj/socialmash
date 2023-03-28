@@ -27,13 +27,15 @@ app.use(
         saveUninitialized: false,
         resave: false,
         cookie: {
-            maxAge: 1000 * 5,
+            maxAge: 1000 * 60 * 10, // 10 minutes
         },
     })
 );
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use(passport.setAuthenticatedUser);
 
 // Use Express Router
 
