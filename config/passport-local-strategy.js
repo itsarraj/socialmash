@@ -16,7 +16,7 @@ passport.use(
                     return done(err);
                 }
 
-                if (!user || !user.password != password) {
+                if (!user || user.password != password) {
                     console.log(`Invalid USERNAME/PASSWORD :: ${err}`);
                     return done(null, false);
                 }
@@ -29,7 +29,7 @@ passport.use(
 
 // serialize and deserialize user functions
 // Serialize user functions
-passport.serializeUser(function (err, user) {
+passport.serializeUser(function (user, done) {
     done(null, user.id);
 });
 
