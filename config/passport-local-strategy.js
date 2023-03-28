@@ -64,4 +64,24 @@ passport.setAuthenticatedUser = function (req, res, next) {
     next();
 };
 
+// if authenticated user open sign in page it redirect back to profile page
+passport.AuthenticatedRedirectSignIN = function (req, res, next) {
+    // if the user is authenticated or signed in
+    if (req.isAuthenticated()) {
+        return res.redirect('/users/profile');
+    }
+    // if the user is not authenticated or not signed in
+    next();
+};
+
+// if authenticated user open sign up page it redirect back to profile page
+passport.AuthenticatedRedirectSignUP = function (req, res, next) {
+    // if the user is authenticated or signed in
+    if (req.isAuthenticated()) {
+        return res.redirect('/users/profile');
+    }
+    // if the user is not authenticated or not signed in
+    next();
+};
+
 module.exports = passport;
