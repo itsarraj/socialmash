@@ -9,12 +9,11 @@
   border-radius: 20px;
   background-color: aquamarine;
   box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.1);
-  font-size: 10px;
-}
-
-.divprofile {
+  font-size: 60px;
   padding-left: 40px;
   padding-bottom: 20px;
+  margin-left: 50px;
+  margin-bottom: 20px;
 }
 
-/*# sourceMappingURL=user_profile.css.map */
+/*# sourceMappingURL=home.css.map */

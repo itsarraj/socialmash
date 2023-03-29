@@ -1,27 +1,20 @@
+<link rel="stylesheet" href="/css/header.css" />
 <header>
-    <div>
-        <h1>header</h1>
+    <div class="nav navbar">
+        <span class="sitename">
+            <a href="/">SocialMash</a>
+        </span>
+        <span class="sign">
+            <a href=""> <% if (locals.user) {%> <%= user.name %></a>
+            <a href="/users/sign-out">Sign-Out</a>
+
+            <% } else {%>
+
+            <a href="/users/sign-in">Sign-in</a>
+
+            <a href="/users/sign-up">Sign-up</a>
+
+            <% }%>
+        </span>
     </div>
-    <ul>
-        <div>
-            <h1>header</h1>
-        </div>
-            <% if (locals.user) {%>
-                <li><%= user.name %></li>
-                <li>
-                    <a href="/users/sign-out">Sign-Out</a>
-                </li>
-
-            <%  } else {%>
-
-                <li>
-                    <a href="/users/sign-in">Sign-in</a>
-                </li>
-
-                <li>
-                    <a href="/users/sign-up">Sign-up</a>
-                </li>
-                <%  }%>
-
-    </ul>
 </header>

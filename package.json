@@ -4,6 +4,7 @@
     "description": "socialmash is a social media website",
     "main": "index.js",
     "scripts": {
+        "sass": "sass --watch assets/scss:assets/css",
         "test": "nodemon index.js"
     },
     "repository": {
@@ -27,7 +28,9 @@
         "express-ejs-layouts": "^2.5.1",
         "express-session": "^1.17.3",
         "mongoose": "^7.0.3",
+        "node-sass": "^8.0.0",
         "passport": "^0.6.0",
-        "passport-local": "^1.0.0"
+        "passport-local": "^1.0.0",
+        "sass": "^1.57.1"
     }
 }

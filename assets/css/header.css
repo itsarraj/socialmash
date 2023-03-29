@@ -1,0 +1,26 @@
+html body {
+  margin: 0px;
+  padding: 0px;
+}
+
+.navbar {
+  height: 45px;
+  background-color: rgb(0, 101, 196);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  display: flexbox;
+  align-items: center;
+}
+.navbar .sitename {
+  flex-direction: row;
+}
+.navbar span a {
+  color: #ffffff;
+  font-size: 30px;
+  text-decoration: none;
+  padding: 0px 5px;
+}
+
+/*# sourceMappingURL=header.css.map */
