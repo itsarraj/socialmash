@@ -16,4 +16,44 @@
   margin-bottom: 20px;
 }
 
+#feed-posts {
+  margin: 10px 0px 10px 20px;
+  padding: 10px 0px 10px 20px;
+}
+#feed-posts h4 {
+  color: #fff;
+  font-size: 20px;
+  border: 1px solid #888;
+  padding: 10px;
+  max-width: fit-content;
+  border-radius: 5px;
+  background-color: #000;
+}
+#feed-posts textarea {
+  padding: 0 30px;
+  font-size: 18px;
+  width: 60%;
+  max-width: 400px;
+  height: 80px;
+  border: 1px solid #b3b3b3;
+  border-radius: 20px 0 0 20px;
+  box-sizing: border-box;
+  font-size: 13px;
+  vertical-align: top;
+  text-align: center;
+  position: relative;
+}
+#feed-posts input {
+  cursor: pointer;
+  border: none;
+  color: #fff;
+  background-color: #1e1e20;
+  background-size: 35px 35px;
+  border-radius: 0 20px 20px 0;
+  padding: 15px 25px;
+  display: inline-block;
+  width: 150px;
+  height: 80px;
+}
+
 /*# sourceMappingURL=home.css.map */
