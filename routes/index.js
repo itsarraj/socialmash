@@ -8,6 +8,7 @@ const homeController = require('../controllers/home_controller');
 // any requests come to '/' or anything other than user appended to it will be forwarded to the homeController
 router.get('/', homeController.home);
 router.use('/users', require('./users'));
+router.use('/posts', require('./posts'));
 
 // for any further routes , access from here
 // router.use('/routerName', require('./routerFile'));
