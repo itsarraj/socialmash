@@ -20,7 +20,7 @@
   margin: 10px 0px 10px 20px;
   padding: 10px 0px 10px 20px;
 }
-#feed-posts h4 {
+#feed-posts #post-name {
   color: #fff;
   font-size: 20px;
   border: 1px solid #888;
@@ -29,7 +29,7 @@
   border-radius: 5px;
   background-color: #000;
 }
-#feed-posts textarea {
+#feed-posts #post-input {
   padding: 0 30px;
   font-size: 18px;
   width: 60%;
@@ -43,7 +43,7 @@
   text-align: center;
   position: relative;
 }
-#feed-posts input {
+#feed-posts #post-submit {
   cursor: pointer;
   border: none;
   color: #fff;
@@ -54,6 +54,25 @@
   display: inline-block;
   width: 150px;
   height: 80px;
+}
+
+.posts-list-container .post-comments {
+  padding: 5px;
+}
+
+.post-comments-list {
+  margin: 5px 0px 5px 0px;
+  box-shadow: rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  border-radius: 5px;
+  margin: 10px;
+  padding: 10px;
+}
+.post-comments-list .new-comment-section {
+  width: fit-content;
+  box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
+  min-width: 10%;
+  padding: 5px 0px 3px 15px;
+  margin: 2px 0px 5px 5px;
 }
 
 /*# sourceMappingURL=home.css.map */

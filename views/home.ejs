@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="./css/home.css" />
+<!-- <meta http-equiv="refresh" content="1" />. -->
 <h1>home</h1>
 <div class="data divprofile">
     <a href="./users/profile">profile</a>
@@ -7,10 +8,17 @@
 </div>
 
 <section id="feed-posts">
-    <h4>Posts</h4>
+    <h4 id="post-name">Posts</h4>
     <form action="/posts/create-post" method="POST">
-        <textarea name="content" cols="30" rows="10" placeholder="Enter Here"></textarea>
-        <input type="submit" value="Post" />
+        <textarea
+            id="post-input"
+            name="content"
+            cols="30"
+            rows="10"
+            placeholder="Enter Here"
+            required
+        ></textarea>
+        <input id="post-submit" type="submit" value="Post" />
     </form>
 
     <div class="posts-list-container">
@@ -19,10 +27,43 @@
             <li>
                 <p>
                     <%= post.content%>
-                    <br>
+                    <br />
                     <small> &nbsp; <%= post.user.name%></small>
                 </p>
-
+                <div class="post-comments">
+                    <% if(locals.user) {%>
+                    <form action="/comments/create" method="POST">
+                        <input
+                            type="text"
+                            name="content"
+                            placeholder="Comment Here"
+                            required
+                        />
+                        <input
+                            type="hidden"
+                            name="post"
+                            value="<%=post._id%>"
+                        />
+                        <input type="submit" value="Add Comment" />
+                    </form>
+                    <%}%>
+                    <div class="post-comments-list">
+                        <ul id="post-comments-<%=post._id%>">
+                            <% for ( comment of post.comments ){%>
+                            <!--  -->
+                            <div class="new-comment-section">
+                                <span class="comment-content"
+                                    ><%= comment.content%>
+                                </span>
+                                <br />
+                                <small class="comment-username">
+                                    <%=comment.user.name%>
+                                </small>
+                            </div>
+                            <%} %>
+                        </ul>
+                    </div>
+                </div>
             </li>
 
             <%} %>

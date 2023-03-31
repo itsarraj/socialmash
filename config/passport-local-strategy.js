@@ -13,13 +13,13 @@ passport.use(
             try {
                 let user = await User.findOne({ email: email });
                 if (!user || user.password != password) {
-                    console.log(`Invalid USERNAME/PASSWORD :: ${err}`);
+                    console.log(`Invalid USERNAME/PASSWORD`);
                     return done(null, false);
                 }
                 return done(null, user);
             } catch (error) {
-                console.log(`Error in Finding User :: ${err}`);
-                return done(err);
+                console.log(`Error in Finding User :: ${error}`);
+                return done(error);
             }
         }
     )

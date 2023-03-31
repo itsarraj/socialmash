@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-
 const commentSchema = new mongoose.Schema(
     {
         content: {
@@ -13,7 +12,7 @@ const commentSchema = new mongoose.Schema(
         },
         post: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'User',
+            ref: 'Post',
         },
     },
     {
