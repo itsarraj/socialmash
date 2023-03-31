@@ -9,7 +9,7 @@
 <section id="feed-posts">
     <h4>Posts</h4>
     <form action="/posts/create-post" method="POST">
-        <textarea name="content" cols="30" rows="10" placeholder="Enter Here"></textarea>
+        <textarea name="content" cols="30" rows="10" placeholder="Enter Your Post "></textarea>
         <input type="submit" value="Post" />
     </form>
 
@@ -23,6 +23,23 @@
                     <small> &nbsp; <%= post.user.name%></small>
                 </p>
 
+            </li>
+            <li>
+                <!-- Comment Added Via DB Area -->
+                <% let aa = 0 %>
+                <% comments.forEach( comment => {%>
+                <p>
+                    <%= comment[aa]%>
+                    <br>
+                </p>
+                <%});%>
+                <!-- Comment Input Area -->
+                <p>
+                    <form action="/posts/create-comment" method="POST">
+                        <textarea name="content" cols="30" rows="10" placeholder="Comment Here"></textarea>
+                        <input type="Save Comment" value="Comment" />
+                    </form>
+                </p>
             </li>
 
             <%} %>

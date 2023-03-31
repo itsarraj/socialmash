@@ -1,5 +1,6 @@
 const Post = require('../models/post');
 const User = require('../models/user');
+const Comment = require('../models/user');
 
 module.exports.home = async function (req, res) {
     // console.log(req.cookies);
@@ -14,9 +15,12 @@ module.exports.home = async function (req, res) {
         // });
 
         const postss = await Post.find({}).populate('user').exec();
+        // const commentss = await Comment.find({}).populate('user').exec();
+
         return res.render('home', {
             title: 'SocialMash',
             posts: postss,
+            comments: postss.comments,
         });
     } catch (error) {
         console.log(error);
