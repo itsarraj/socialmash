@@ -26,7 +26,19 @@ module.exports.createcomment = async function (req, res) {
     }
 };
 
-// return res.render('home', {
-//     title: 'SocialMash',
-//     posts: postss,
-// });
+module.exports.destroy = async function (req, res) {
+    try {
+        const comment = await Comment.findById(req.params.id);
+        if (comment.user == req.user.id) {
+            let postId = comment.post;
+            await Comment.deleteOne({ _id: postId });
+            await Post.findByIdAndUpdate(postId, {
+                $pull: { comments: req.params.id },
+            });
+            return res.redirect('back');
+        }
+    } catch (error) {
+        console.error(error);
+    }
+    return res.redirect('back');
+};
