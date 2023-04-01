@@ -22,9 +22,12 @@ module.exports.home = async function (req, res) {
                 },
             })
             .exec();
+        const users = await User.find({});
+
         return res.render('home', {
             title: 'SocialMash',
             posts: posts,
+            all_users: users,
         });
     } catch (error) {
         console.log(error);
