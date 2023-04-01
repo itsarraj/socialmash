@@ -1,34 +1,35 @@
 <link rel="stylesheet" href="./css/home.css" />
 <!-- <meta http-equiv="refresh" content="1" />. -->
-<h1>home</h1>
 <div class="data divprofile">
     <a href="./users/profile">profile</a>
     <a href="./users/sign-up">sign-up</a>
     <a href="./users/sign-in">sign-in</a>
 </div>
 
-<section id="feed-posts">
-    <h4 id="post-name">Posts</h4>
-    <form action="/posts/create-post" method="POST">
-        <textarea id="post-input" name="content" cols="30" rows="10" placeholder="Enter Here" required></textarea>
-        <input id="post-submit" type="submit" value="Post" />
-    </form>
+<div id="home-container">
+    <section id="feed-posts">
+        <h4 id="post-name">Posts</h4>
+        <form action="/posts/create-post" method="POST">
+            <textarea id="post-input" name="content" cols="30" rows="10" placeholder="Enter Here" required></textarea>
+            <input id="post-submit" type="submit" value="Post" />
+        </form>
 
-    <div class="posts-list-container">
-        <ul>
-            <% for(post of posts) {%>
-            <%- include('_post.ejs'); -%>
-            <%} %>
-        </ul>
-    </div>
+        <div class="posts-list-container">
+            <ul>
+                <% for(post of posts) {%>
+                <%- include('_post.ejs'); -%>
+                <%} %>
+            </ul>
+        </div>
 
-</section>
+    </section>
 
-<section id="user-friends">
-    <h4>Friends</h4>
-    <% for ( u of all_users){ %>
-    <p>
-        <a href="/users/profile/<%= u.id %>"><%= u.name%></a>
-    </p>
-    <%}%>
-</section>
+    <section id="user-friends">
+        <h4>Friends</h4>
+        <% for ( u of all_users){ %>
+        <p>
+            <a href="/users/profile/<%= u.id %>"><%= u.name%></a>
+        </p>
+        <%}%>
+    </section>
+</div>
