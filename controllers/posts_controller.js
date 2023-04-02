@@ -1,5 +1,6 @@
 const Post = require('../models/post');
 const Comment = require('../models/comment');
+const User = require('../models/user');
 
 module.exports.createpost = async function (req, res) {
     try {
@@ -9,9 +10,12 @@ module.exports.createpost = async function (req, res) {
         });
 
         if (req.xhr) {
+            const user = await User.findById(req.user._id).exec();
+            // console.log(user.name);
             return res.status(200).json({
                 data: {
                     post: post,
+                    username: user.name,
                 },
                 message: 'Post Created successfully',
             });
@@ -33,6 +37,7 @@ module.exports.destroy = async function (req, res) {
         // `_id` has to be converted to string to compare , but mongoose provides a way to do this with the `id` property
         if (post.user == req.user.id) {
             await Post.deleteMany({ _id: post._id });
+            await Comment.deleteMany({ post: req.params.id });
             if (req.xhr) {
                 return res.status(200).json({
                     data: {
@@ -41,7 +46,6 @@ module.exports.destroy = async function (req, res) {
                     message: 'Post deleted',
                 });
             }
-            await Comment.deleteMany({ post: req.params.id });
             return res.redirect('back');
         }
     } catch (error) {

@@ -1,16 +1,17 @@
-<div class="new-comment-section">
+<li class="new-comment-section">
 
     <% if ( locals.user && locals.user.id == comment.user.id ){ %>
     <small>
         <a href="/comments/destroy/<%= comment.id %>">
-            <button name="Delete">(x)</button>
+            <button name="Delete">X</button>
         </a>
     </small>
     <% } %>
-    <span class="comment-content"><%= comment.content%>
+    <span class="comment-content">
+        <%= comment.content%>
     </span>
     <br />
     <small class="comment-username">
         <%=comment.user.name%>
     </small>
-</div>
+</li>

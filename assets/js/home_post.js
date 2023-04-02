@@ -12,8 +12,8 @@
                 url: '/posts/create-post',
                 data: newPostForm.serialize(),
                 success: function (data) {
-                    let newPost = newPostDom(data.data.post);
-                    console.log('*()* :: ', data);
+                    let newPost = newPostDom(data.data);
+                    console.log('*()* :: ', data.data);
                     $('#posts-list-container > ul').prepend(newPost);
                     deletePost($(' .delete-post-button', newPost));
                 },
@@ -27,23 +27,23 @@
     /**
      * method to create a post in DOM
      */
-    let newPostDom = function (post) {
+    let newPostDom = function (data) {
         return $(`
-        <li id="post-${post._id}">
+        <li id="post-${data.post._id}">
 
             <p>
                 <small>
-                   <a class="delete-post-button" href="/posts/destroy/${post._id}">
+                   <a class="delete-post-button" href="/posts/destroy/${data.post._id}">
                    <button name="Delete">X</button>
                    </a>
                 </small>
 
                 <div>
-                    ${post.content}
+                    ${data.post.content}
                 </div>
                 <br />
                 <small>
-                    ${post.user.name}
+                    ${data.username}
                 </small>
             </p>
 
@@ -51,12 +51,12 @@
 
                 <form action="/comments/create" method="POST">
                         <input type="text" name="content" placeholder="Comment Here" required />
-                        <input type="hidden" name="post" value="${post._id}" />
+                        <input type="hidden" name="post" value="${data.post._id}" />
                         <input type="submit" value="Add Comment" />
                 </form>
 
                 <div class="post-comments-list">
-                    <ul id="post-comments-${post._id}">
+                    <ul id="post-comments-${data.post._id}">
                     </ul>
                 </div>
 
