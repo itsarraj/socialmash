@@ -8,6 +8,7 @@
 #home-container #user-friends {
   width: 30%;
   padding: 10px;
+  border-left: 1px solid rgba(0, 32, 62, 0.4);
 }
 
 /*# sourceMappingURL=home.css.map */
