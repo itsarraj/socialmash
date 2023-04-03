@@ -16,6 +16,7 @@
                     console.log('*()* :: ', data.data);
                     $('#posts-list-container > ul').prepend(newPost);
                     deletePost($(' .delete-post-button', newPost));
+                    new PostComments(data.data.post._id);
                 },
                 error: function (err) {
                     console.log(err.responseText);
@@ -49,7 +50,7 @@
 
             <div class="post-comments">
 
-                <form action="/comments/create" method="POST">
+                <form id="post-${data.post._id}-comments-form" action="/comments/create" method="POST">
                         <input type="text" name="content" placeholder="Comment Here" required />
                         <input type="hidden" name="post" value="${data.post._id}" />
                         <input type="submit" value="Add Comment" />
@@ -85,5 +86,18 @@
         });
     };
 
+    let convertPostsToAjax = function () {
+        $('#posts-list-container>ul>li').each(function () {
+            let self = $(this);
+            let deleteButton = $(' .delete-post-button', self);
+            deletePost(deleteButton);
+
+            // get the post's id by splitting the id attribute
+            let postId = self.prop('id').split('-')[1];
+            new PostComments(postId);
+        });
+    };
+
     createPost();
+    convertPostsToAjax();
 }
