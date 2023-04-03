@@ -1,4 +1,6 @@
 const User = require('../models/user');
+const fs = require('fs');
+const path = require('path');
 
 module.exports.profile = async function (req, res) {
     const user = await User.findById(req.params.id);
@@ -11,8 +13,46 @@ module.exports.profile = async function (req, res) {
 
 module.exports.update = async function (req, res) {
     if (req.user.id == req.params.id) {
-        await User.findByIdAndUpdate(req.params.id, req.body);
-        return res.redirect('back');
+        try {
+            const user = await User.findById(req.params.id);
+            await User.findByIdAndUpdate(req.params.id, req.body);
+            await User.uploadedAvatar(req, res, function (err) {
+                if (err) {
+                    console.log('Multer Error: ', err);
+                }
+                user.name = req.body.name;
+                user.email = req.body.email;
+                if (req.file) {
+                    //    file check starts here
+                    const filePath = path.join(__dirname, '..', user.avatar);
+                    console.log(filePath);
+                    let fileExists = false;
+                    try {
+                        fs.access(filePath, fs.F_OK);
+                        fileExists = true;
+                        console.log('File exists: ' + filePath);
+                    } catch (error) {
+                        fileExists = false;
+                        console.log('File does not exist: ' + filePath);
+                    }
+                    //    file check end
+
+                    if (user.avatar && fileExists) {
+                        fs.unlinkSync(path.join(__dirname, '..', user.avatar));
+                    }
+
+                    /**
+                     * This is saving the path of the uploaded
+                     *  file into the avatar field in User DB
+                     */
+                    user.avatar = User.avatarPath + '/' + req.file.filename;
+                }
+                user.save();
+            });
+            return res.redirect('back');
+        } catch (error) {
+            console.error('Error : ', error);
+        }
     } else {
         return res.status(401).send('Bhag yha se');
     }

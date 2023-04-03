@@ -10,12 +10,9 @@ module.exports.createpost = async function (req, res) {
 
         return res.redirect('back');
     } catch (error) {
-        if (error) {
-            console.error(error);
-            return;
-        }
-        return res.redirect('back');
+        console.error(error);
     }
+    return res.redirect('back');
 };
 
 module.exports.destroy = async function (req, res) {
