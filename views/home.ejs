@@ -1,20 +1,15 @@
 <link rel="stylesheet" href="./css/home.css" />
 <!-- <meta http-equiv="refresh" content="1" />. -->
-<div class="data divprofile">
-    <a href="./users/profile">profile</a>
-    <a href="./users/sign-up">sign-up</a>
-    <a href="./users/sign-in">sign-in</a>
-</div>
 
 <div id="home-container">
     <section id="feed-posts">
         <h4 id="post-name">Posts</h4>
-        <form action="/posts/create-post" method="POST">
+        <form action="/posts/create-post" id="new-post-form" method="POST">
             <textarea id="post-input" name="content" cols="30" rows="10" placeholder="Enter Here" required></textarea>
             <input id="post-submit" type="submit" value="Post" />
         </form>
 
-        <div class="posts-list-container">
+        <div class="posts-list-container" id='posts-list-container'>
             <ul>
                 <% for(post of posts) {%>
                 <%- include('_post.ejs'); -%>
@@ -33,3 +28,7 @@
         <%}%>
     </section>
 </div>
+
+
+<script src="/js/home_comment.js"></script>
+<script src="/js/home_post.js"></script>
