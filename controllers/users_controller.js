@@ -26,18 +26,7 @@ module.exports.update = async function (req, res) {
                     //    file check starts here
                     const filePath = path.join(__dirname, '..', user.avatar);
                     console.log(filePath);
-                    let fileExists = false;
-                    try {
-                        fs.access(filePath, fs.F_OK);
-                        fileExists = true;
-                        console.log('File exists: ' + filePath);
-                    } catch (error) {
-                        fileExists = false;
-                        console.log('File does not exist: ' + filePath);
-                    }
-                    //    file check end
-
-                    if (user.avatar && fileExists) {
+                    if (user.avatar && fs.existsSync(filePath)) {
                         fs.unlinkSync(path.join(__dirname, '..', user.avatar));
                     }
 
