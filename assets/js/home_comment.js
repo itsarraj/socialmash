@@ -70,7 +70,7 @@ class PostComments {
             e.preventDefault();
 
             $.ajax({
-                type: 'get',
+                type: 'GET',
                 url: $(deleteLink).prop('href'),
                 success: function (data) {
                     $(`#comment-${data.data.comment_id}`).remove();
