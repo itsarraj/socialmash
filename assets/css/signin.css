@@ -115,4 +115,15 @@ h2 {
   width: 100%;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+  cursor: auto;
+}
+
+.button-design-google {
+  background-color: #e74c3c;
+  color: #24e2ff;
+}
+
 /*# sourceMappingURL=signin.css.map */

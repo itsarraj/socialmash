@@ -22,6 +22,12 @@ const userSchema = new mongoose.Schema(
         avatar: {
             type: String,
         },
+        avatar: {
+            type: String,
+        },
+        accessToken: {
+            type: String,
+        },
     },
     {
         timestamps: true, //createdat and updatedat
