@@ -1,7 +1,8 @@
 const Comment = require('../models/comment');
 const Post = require('../models/post');
 const User = require('../models/user');
-const commentsMailer = require('../mailers/comments_mailer');
+const queue = require('../config/kue');
+const commentEmailWorker = require('../workers/comment_email_worker');
 
 module.exports.createcomment = async function (req, res) {
     try {
@@ -21,7 +22,14 @@ module.exports.createcomment = async function (req, res) {
                 content: `${req.body.content}`,
             }).populate('user', 'name email');
 
-            commentsMailer.newComment(user);
+            // commentsMailer.newComment(user);
+            let job = queue.create('emails', user).save(function (err) {
+                if (err) {
+                    console.error(err);
+                    return;
+                }
+                console.log('job enqueued', job.id);
+            });
             if (req.xhr) {
                 // TODO: in CommentsDB better is comment.popuate user and name so that we wont get passwords
                 // const user = await User.findById(req.user._id).exec();
