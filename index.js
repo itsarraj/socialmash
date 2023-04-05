@@ -7,6 +7,7 @@ const db = require('./config/mongoose');
 // used for session cookies
 const session = require('express-session');
 const passport = require('passport');
+// Importing our custom modules for passport authentication strategies
 const passportLocal = require('./config/passport-local-strategy');
 const passportJWT = require('./config/passport-jwt-strategy');
 const passportGoogle = require('./config/passport-google-oauth2-strategy');

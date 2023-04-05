@@ -19,7 +19,7 @@ passport.use(
                     email: profile.emails[0].value,
                 }).exec();
 
-                console.log(profile);
+                // console.log(profile);
                 if (user) {
                     // if found , set this user as req.user
                     return done(null, user);

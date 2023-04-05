@@ -1,6 +1,7 @@
 const Comment = require('../models/comment');
 const Post = require('../models/post');
 const User = require('../models/user');
+const commentsMailer = require('../mailers/comments_mailer');
 
 module.exports.createcomment = async function (req, res) {
     try {
@@ -16,14 +17,15 @@ module.exports.createcomment = async function (req, res) {
             // pushed the comment object to the post
             post.comments.push(comment); // pushed the comment object to the post , not in the db cal .save() method to save the comment in the db
             post.save(); // save the comment that was created in the database
+            const user = await Comment.findOne({
+                content: `${req.body.content}`,
+            }).populate('user', 'name email');
+
+            commentsMailer.newComment(user);
             if (req.xhr) {
                 // TODO: in CommentsDB better is comment.popuate user and name so that we wont get passwords
                 // const user = await User.findById(req.user._id).exec();
-                const user = await Comment.findOne({
-                    content: `${req.body.content}`,
-                })
-                    .populate('user', 'name')
-                    .exec();
+
                 return res.status(200).json({
                     data: {
                         comment: comment,
