@@ -30,6 +30,8 @@ router.post(
 );
 
 router.get('/sign-out', usersController.destroySession);
+router.get('/forget-password', usersController.forgetpasswordpage);
+router.post('/forget-password/generate', usersController.forgetpassword);
 
 router.get(
     '/auth/google',

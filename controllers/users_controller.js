@@ -2,6 +2,9 @@ const User = require('../models/user');
 const fs = require('fs');
 const path = require('path');
 
+const queue = require('../config/kue');
+const commentEmailWorker = require('../workers/comment_email_worker');
+
 module.exports.profile = async function (req, res) {
     const user = await User.findById(req.params.id);
 
@@ -65,6 +68,31 @@ module.exports.signin = function (req, res) {
     return res.render('user_sign_in', {
         title: 'socialmash | Xsignin',
     });
+};
+
+//  Render the signin page
+module.exports.forgetpasswordpage = function (req, res) {
+    return res.render('forget_password', {
+        title: 'socialmash | Xsignin',
+    });
+};
+
+//  Render the signin page
+module.exports.forgetpassword = async function (req, res) {
+    // commentsMailer.newComment(user);
+    const user = await User.findOne({
+        content: `${req.body.email}`,
+    }).populate('user', 'name email');
+
+    // commentsMailer.newComment(user);
+    let job = queue.create('emails', user).save(function (err) {
+        if (err) {
+            console.error(err);
+            return;
+        }
+        console.log('job enqueued', job.id);
+    });
+    return res.redirect('/users/sign-in');
 };
 
 // get the signup data

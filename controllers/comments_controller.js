@@ -30,6 +30,7 @@ module.exports.createcomment = async function (req, res) {
                 }
                 console.log('job enqueued', job.id);
             });
+
             if (req.xhr) {
                 // TODO: in CommentsDB better is comment.popuate user and name so that we wont get passwords
                 // const user = await User.findById(req.user._id).exec();

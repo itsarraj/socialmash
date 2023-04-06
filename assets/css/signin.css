@@ -121,9 +121,20 @@ a {
   cursor: auto;
 }
 
-.button-design-google {
-  background-color: #e74c3c;
-  color: #24e2ff;
+.form-control .button-design-google {
+  background-image: linear-gradient(to right, #4285f4, #db4437, #f4b400, #0f9d58);
+  color: #000;
+  border-image: linear-gradient(to right, #4285f4, #db4437, #f4b400, #0f9d58);
+}
+
+.form-control a {
+  color: blue;
+  text-decoration: underline;
+}
+.form-control a .forget-password {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /*# sourceMappingURL=signin.css.map */
