@@ -8,7 +8,9 @@ exports.newComment = (comment) => {
         { comment: comment },
         '/comments/new_comment.ejs'
     );
+
     console.log('Email Send To ', comment.user.email);
+
     nodeMailer.transporter.sendMail(
         {
             from: 'competitivedevelopernewsletter@gmail.com',

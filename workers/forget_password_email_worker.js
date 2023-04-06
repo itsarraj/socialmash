@@ -1,14 +1,9 @@
 const queue = require('../config/kue');
 const forgetPasswordMailer = require('../mailers/forget_password_mailer');
 
-queue.process('emails', function (job, done) {
-    console.log(
-        'emails worker is processing jobs of Reset Password: ',
-        job.data
-    );
+queue.process('pass-reset-mail', function (job, done) {
+    console.log('emails worker is processing jobs of resetPass : ', job.data);
 
-    console.log(job.data);
-
-    // forgetPasswordMailer.newResetPassword(job.data);
-    // done();
+    forgetPasswordMailer.newResetPassword(job.data);
+    done();
 });

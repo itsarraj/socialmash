@@ -1,9 +1,8 @@
 const User = require('../models/user');
 const fs = require('fs');
 const path = require('path');
-
 const queue = require('../config/kue');
-const commentEmailWorker = require('../workers/comment_email_worker');
+const forgetPasswordEmailWorker = require('../workers/forget_password_email_worker');
 
 module.exports.profile = async function (req, res) {
     const user = await User.findById(req.params.id);
@@ -80,19 +79,34 @@ module.exports.forgetpasswordpage = function (req, res) {
 //  Render the signin page
 module.exports.forgetpassword = async function (req, res) {
     // commentsMailer.newComment(user);
-    const user = await User.findOne({
-        content: `${req.body.email}`,
-    }).populate('user', 'name email');
+    // console.log(req.body.email);
+    let user = await User.findOne({
+        email: `${req.body.email}`,
+    });
 
     // commentsMailer.newComment(user);
-    let job = queue.create('emails', user).save(function (err) {
+
+    //     The default priority map is as follows:
+
+    // {
+    //     low: 10
+    //   , normal: 0
+    //   , medium: -5
+    //   , high: -10
+    //   , critical: -15
+    // };
+
+    let job = queue.create('pass-reset-mail', user).save(function (err) {
         if (err) {
-            console.error(err);
+            console.log('Error in sending to the queue', err);
             return;
         }
+        // console.log('user ', user);
         console.log('job enqueued', job.id);
     });
-    return res.redirect('/users/sign-in');
+    // return res.redirect('back');
+
+    // return res.redirect('/users/sign-in');
 };
 
 // get the signup data

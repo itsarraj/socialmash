@@ -8,12 +8,12 @@ exports.newResetPassword = (user) => {
         { user: user },
         '/forget_password/forget_password.ejs'
     );
-    console.log('Email Send To ', user.user.email);
+    console.log('Email Send To ', user.email);
     nodeMailer.transporter.sendMail(
         {
             from: 'competitivedevelopernewsletter@gmail.com',
-            to: user.user.email,
-            subject: 'New user',
+            to: user.email,
+            subject: 'Password Reset Email',
             html: htmlString,
         },
 
