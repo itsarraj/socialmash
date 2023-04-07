@@ -27,15 +27,15 @@ module.exports.createcomment = async function (req, res) {
 
             // comments mailer content is coded below
 
-            let job = queue
-                .create('comment-emails', comment)
-                .save(function (err) {
-                    if (err) {
-                        console.error(err);
-                        return;
-                    }
-                    console.log('job enqueued', job.id);
-                });
+            // let job = queue
+            //     .create('comment-emails', comment)
+            //     .save(function (err) {
+            //         if (err) {
+            //             console.error(err);
+            //             return;
+            //         }
+            //         console.log('job enqueued', job.id);
+            //     });
 
             if (req.xhr) {
                 // TODO: in CommentsDB better is comment.popuate user and name so that we wont get passwords
