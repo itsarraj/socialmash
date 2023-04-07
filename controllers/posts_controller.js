@@ -32,6 +32,9 @@ module.exports.destroy = async function (req, res) {
         const post = await Post.findById(req.params.id);
         // `_id` has to be converted to string to compare , but mongoose provides a way to do this with the `id` property
         if (post.user == req.user.id) {
+            await Like.deleteMany({ likeable: post, onModel: 'Post' });
+            await Like.deleteMany({ _id: { $in: post.comments } });
+
             await Post.deleteMany({ _id: post._id });
             await Comment.deleteMany({ post: req.params.id });
             if (req.xhr) {

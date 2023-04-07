@@ -6,13 +6,6 @@ module.exports.home = async function (req, res) {
     // res.cookie('user_id', 25);
 
     try {
-        // const post = await Post.find({});
-
-        // return res.render('home', {
-        //     title: 'SocialMash',
-        //     posts: post,
-        // });
-
         const posts = await Post.find({})
             .sort('-createdAt')
             .populate('user')
@@ -21,8 +14,13 @@ module.exports.home = async function (req, res) {
                 populate: {
                     path: 'user',
                 },
+                populate: {
+                    path: 'likes',
+                },
             })
-            .exec();
+            .populate('comments')
+            .populate('likes');
+
         const users = await User.find({});
 
         return res.render('home', {

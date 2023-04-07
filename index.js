@@ -1,55 +1,58 @@
-const express = require('express');
-const cookieParser = require('cookie-parser');
-const app = express();
-const port = 8000;
-const expressLayouts = require('express-ejs-layouts');
-const db = require('./config/mongoose');
-// used for session cookies
-const session = require('express-session');
-const passport = require('passport');
-// Importing our custom modules for passport authentication strategies
-const passportLocal = require('./config/passport-local-strategy');
-const passportJWT = require('./config/passport-jwt-strategy');
-const passportGoogle = require('./config/passport-google-oauth2-strategy');
-const MongoStore = require('connect-mongo');
-const flash = require('connect-flash');
-const customMware = require('./config/middleware');
+// Import required modules
+const express = require('express'); // Express.js for building the web application
+const cookieParser = require('cookie-parser'); // Middleware for handling cookies
+const app = express(); // Create an instance of Express app
+const port = 8000; // Port number for the server to listen on
+const expressLayouts = require('express-ejs-layouts'); // Middleware for handling EJS layouts
+const db = require('./config/mongoose'); // Mongoose for connecting to MongoDB
+// Passport and its authentication strategies
+const session = require('express-session'); // Middleware for handling sessions
+const passport = require('passport'); // Passport for authentication
+const passportLocal = require('./config/passport-local-strategy'); // Local strategy for Passport
+const passportJWT = require('./config/passport-jwt-strategy'); // JWT strategy for Passport
+const passportGoogle = require('./config/passport-google-oauth2-strategy'); // Google OAuth2 strategy for Passport
+const MongoStore = require('connect-mongo'); // Middleware for storing session data in MongoDB
+const sassMiddleware = require('node-sass-middleware'); // Middleware for handling Sass preprocessing
+const flash = require('connect-flash'); // Middleware for handling flash messages
+const customMware = require('./config/middleware'); // Custom middleware for flash messages
 
-// const sassMiddleware = require('node-sass-middleware');
+const chatServer = require('http').createServer(app);
+const chatSockets = require('./config/chat_sockets').chatSockets(chatServer);
+chatServer.listen(5000);
+console.log('chat server listening on port 5000');
 
-// app.use(
-//     sassMiddleware({
-//         src: './assets/scss',
-//         dest: './assets/css',
-//         debug: true,
-//         outputStyle: 'extended',
-//         prefix: '/css',
-//     })
-// );
+// Use Sass middleware to preprocess SCSS files into CSS
+app.use(
+    sassMiddleware({
+        src: './assets/scss',
+        dest: './assets/css',
+        debug: true,
+        outputStyle: 'extended',
+        prefix: '/css',
+    })
+);
 
-app.use(express.urlencoded({ extended: true }));
-app.use(cookieParser());
+app.use(express.urlencoded({ extended: true })); // Middleware for parsing URL-encoded data
+app.use(cookieParser()); // Middleware for parsing cookies
 
-app.use(express.static('./assets/'));
-// make the upload path available to the browser
+app.use(express.static('./assets/')); // Middleware for serving static files from the assets directory
+// Make the upload path available to the browser
 app.use('/uploads', express.static(__dirname + '/uploads'));
 
-app.use(expressLayouts);
-// extract style and scripts from subpages into the layout
+app.use(expressLayouts); // Middleware for using EJS layouts
+// Extract styles and scripts from subpages into the layout
 app.set('layout extractStyles', true);
 app.set('layout extractScripts', true);
 
-// Setup the view engine
+// Setup the view engine as EJS
 app.set('view engine', 'ejs');
 app.set('views', './views');
 
-// mongo store is used to store the session cookie in the db
-
+// Use MongoDB to store session data
 app.use(
     session({
-        name: 'socialmash',
-        // TODO: Change the secret before deploying
-        secret: 'VmYq3s6v',
+        name: 'socialmash', // Name of the session cookie
+        secret: 'VmYq3s6v', // Secret used for session encryption (TODO: Change this before deploying)
         saveUninitialized: false,
         resave: false,
         cookie: {
@@ -57,8 +60,8 @@ app.use(
         },
         store: MongoStore.create(
             {
-                mongoUrl: 'mongodb://127.0.0.1/socialmash_development',
-                mongooseConnection: db,
+                mongoUrl: 'mongodb://127.0.0.1/socialmash_development', // MongoDB connection URL
+                mongooseConnection: db, // Mongoose connection object
                 autoRemove: 'disabled',
             },
             function (err) {
@@ -68,17 +71,18 @@ app.use(
     })
 );
 
-app.use(passport.initialize());
-app.use(passport.session());
+app.use(passport.initialize()); // Middleware for initializing Passport
+app.use(passport.session()); // Middleware for handling Passport sessions
 
-app.use(passport.setAuthenticatedUser);
+app.use(passport.setAuthenticatedUser); // Middleware for setting authenticated user in req object
 
-// Use Express Router
+app.use(flash()); // Middleware for handling flash messages
+app.use(customMware.setFlash); // Middleware for setting flash messages
 
-// app.use('/' , require('./routes/index')); // routes/index is fetched by default from routes
-app.use('/', require('./routes'));
+// Use Express Router for routing
+app.use('/', require('./routes/index'));
 
-// fire up the server
+// Start the server
 app.listen(port, function (err) {
     if (err) {
         console.log(`Error running server: ${err}`);

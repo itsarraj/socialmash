@@ -29,10 +29,12 @@ const userSchema = new mongoose.Schema(
         avatar: {
             type: String,
         },
-        // Avatar path of the user
-        avatar: {
-            type: String,
-        },
+        friendsips: [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'Friendship',
+            },
+        ],
     },
     {
         timestamps: true, // Adding timestamps to track createdAt and updatedAt fields
