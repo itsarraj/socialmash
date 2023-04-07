@@ -1,5 +1,6 @@
 // Import required modules
 const express = require('express'); // Express.js for building the web application
+const env = require('./config/environment');
 const cookieParser = require('cookie-parser'); // Middleware for handling cookies
 const app = express(); // Create an instance of Express app
 const port = 8000; // Port number for the server to listen on
@@ -21,11 +22,12 @@ const chatSockets = require('./config/chat_sockets').chatSockets(chatServer);
 chatServer.listen(5000);
 console.log('chat server listening on port 5000');
 
+const path = require('path');
 // Use Sass middleware to preprocess SCSS files into CSS
 app.use(
     sassMiddleware({
-        src: './assets/scss',
-        dest: './assets/css',
+        src: path.join(__dirname, env.asset_path , 'scss'),
+        dest: path.join(__dirname, env.asset_path , 'css'),
         debug: true,
         outputStyle: 'extended',
         prefix: '/css',
@@ -35,7 +37,7 @@ app.use(
 app.use(express.urlencoded({ extended: true })); // Middleware for parsing URL-encoded data
 app.use(cookieParser()); // Middleware for parsing cookies
 
-app.use(express.static('./assets/')); // Middleware for serving static files from the assets directory
+app.use(express.static(env.asset_path)); // Middleware for serving static files from the assets directory
 // Make the upload path available to the browser
 app.use('/uploads', express.static(__dirname + '/uploads'));
 
@@ -52,7 +54,7 @@ app.set('views', './views');
 app.use(
     session({
         name: 'socialmash', // Name of the session cookie
-        secret: 'VmYq3s6v', // Secret used for session encryption (TODO: Change this before deploying)
+        secret: env.session_cookie_key, // Secret used for session encryption (TODO: Change this before deploying)
         saveUninitialized: false,
         resave: false,
         cookie: {

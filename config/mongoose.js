@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
+const env = require('./environment');
+
 //Set up default mongoose connection
-const mongoDB = 'mongodb://127.0.0.1/socialmash_development';
+const mongoDB = `mongodb://127.0.0.1/${env.db}`;
 mongoose.connect(mongoDB, { useNewUrlParser: true });
 //Get the default connection
 const db = mongoose.connection;
