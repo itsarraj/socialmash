@@ -24,16 +24,17 @@ console.log('chat server listening on port 5000');
 
 const path = require('path');
 // Use Sass middleware to preprocess SCSS files into CSS
-app.use(
-    sassMiddleware({
-        src: path.join(__dirname, env.asset_path , 'scss'),
-        dest: path.join(__dirname, env.asset_path , 'css'),
-        debug: true,
-        outputStyle: 'extended',
-        prefix: '/css',
-    })
-);
-
+if (env.name == 'development') {
+    app.use(
+        sassMiddleware({
+            src: path.join(__dirname, env.asset_path, 'scss'),
+            dest: path.join(__dirname, env.asset_path, 'css'),
+            debug: true,
+            outputStyle: 'extended',
+            prefix: '/css',
+        })
+    );
+}
 app.use(express.urlencoded({ extended: true })); // Middleware for parsing URL-encoded data
 app.use(cookieParser()); // Middleware for parsing cookies
 
