@@ -16,7 +16,7 @@ const sassMiddleware = require('node-sass-middleware'); // Middleware for handli
 const flash = require('connect-flash'); // Middleware for handling flash messages
 const customMware = require('./config/middleware'); // Custom middleware for flash messages
 
-const chatServer = require('http').createServer(app);
+const chatServer = require('http').createServer();
 const chatSockets = require('./config/chat_sockets').chatSockets(chatServer);
 chatServer.listen(5000);
 console.log('chat server listening on port 5000');
