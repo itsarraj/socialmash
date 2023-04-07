@@ -1,6 +1,7 @@
 // Import required modules
 const express = require('express'); // Express.js for building the web application
 const env = require('./config/environment');
+const logger = require('morgan');
 const cookieParser = require('cookie-parser'); // Middleware for handling cookies
 const app = express(); // Create an instance of Express app
 const port = 8000; // Port number for the server to listen on
@@ -24,6 +25,7 @@ console.log('chat server listening on port 5000');
 
 const path = require('path');
 // Use Sass middleware to preprocess SCSS files into CSS
+
 if (env.name == 'development') {
     app.use(
         sassMiddleware({
@@ -35,12 +37,15 @@ if (env.name == 'development') {
         })
     );
 }
+
 app.use(express.urlencoded({ extended: true })); // Middleware for parsing URL-encoded data
 app.use(cookieParser()); // Middleware for parsing cookies
 
 app.use(express.static(env.asset_path)); // Middleware for serving static files from the assets directory
 // Make the upload path available to the browser
 app.use('/uploads', express.static(__dirname + '/uploads'));
+
+app.use(logger(env.morgan.mode, env.morgan.options));
 
 app.use(expressLayouts); // Middleware for using EJS layouts
 // Extract styles and scripts from subpages into the layout
