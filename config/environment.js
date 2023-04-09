@@ -15,7 +15,7 @@ const accessLogStream = rfs.createStream('access.log', {
 const development = {
     name: 'development',
     asset_path: './assets',
-    session_cookie_key: 'VmYq3s6v',
+    session_cookie_key: 'secret',
     db: 'socialmash_development',
     smtp: {
         service: 'gmail',
@@ -23,15 +23,15 @@ const development = {
         port: 587,
         secure: false,
         auth: {
-            user: 'animeshraj20192012ece@gmail.com',
-            pass: 'yyzoppedyoejguih',
+            user: 'competitivedevelopernewsletter@gmail.com',
+            pass: 'ijikdhlklhayevdo',
         },
     },
 
-    google_client_id:
-        '60501335444-35s3deb8k24iolpadk1emlovqiekffti.apps.googleusercontent.com',
-    google_client_secret: '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',
-    google_call_back_url: 'http://localhost:8000/users/auth/google/callback',
+    google_client_id: 'CHANGE IT ',
+    google_client_secret: 'CHANGE IT',
+    google_call_back_url: 'CHANGE IT',
+
     jwt_secret: 'secret',
     morgan: {
         mode: 'dev',
@@ -39,29 +39,32 @@ const development = {
     },
 };
 
-// const production = {
-//     name: 'production',
-//     asset_path: process.env.CODEIAL_ASSET_PATH,
-//     session_cookie_key: process.env.CODEIAL_SESSION_COOKIE_KEY,
-//     db: process.env.CODEIAL_DB,
-//     smtp: {
-//         service: 'gmail',
-//         host: 'smtp.gmail.com',
-//         port: 587,
-//         secure: false,
-//         auth: {
-//             user: process.env.CODEIAL_GMAIL_USERNAME,
-//             pass: process.env.CODEIAL_GMAIL_PASSWORD,
-//         },
-//     },
-//     google_client_id: process.env.CODEIAL_GOOGLE_CLIENT_ID,
-//     google_client_secret: process.env.CODEIAL_GOOGLE_CLIENT_SECRET,
-//     google_call_back_url: process.env.CODEIAL_GOOGLE_CALLBACK_RURL,
-//     jwt_secret: process.env.CODEIAL_JWT_SECRET,
-//     morgan: {
-//         mode: 'combined',
-//         options: { stream: accessLogStream },
-//     },
-// };
+const production = {
+    name: 'production',
+    asset_path: process.env.SOCIALMASH_ASSET_PATH,
+    session_cookie_key: process.env.SOCIALMASH_SESSION_COOKIE_KEY,
+    db: process.env.SOCIALMASH_DB,
+    smtp: {
+        service: 'gmail',
+        host: 'smtp.gmail.com',
+        port: 587,
+        secure: false,
+        auth: {
+            user: process.env.SOCIALMASH_GMAIL_USERNAME,
+            pass: process.env.SOCIALMASH_GMAIL_PASSWORD,
+        },
+    },
+    google_client_id: process.env.SOCIALMASH_GOOGLE_CLIENT_ID,
+    google_client_secret: process.env.SOCIALMASH_GOOGLE_CLIENT_SECRET,
+    google_call_back_url: process.env.SOCIALMASH_GOOGLE_CALLBACK_URL,
+    jwt_secret: process.env.SOCIALMASH_JWT_SECRET,
+    morgan: {
+        mode: 'combined',
+        options: { stream: accessLogStream },
+    },
+};
 
-module.exports = development;
+module.exports =
+    eval(process.env.SOCIALMASH_ENVIRONMENT) == undefined
+        ? development
+        : eval(process.env.SOCIALMASH_ENVIRONMENT);
