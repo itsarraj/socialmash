@@ -4,7 +4,6 @@ const rfs = require('rotating-file-stream');
 const path = require('path');
 
 const logDirectory = path.join(__dirname, '../production_log');
-
 fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory);
 
 const accessLogStream = rfs.createStream('access.log', {
@@ -23,12 +22,12 @@ const development = {
         port: 587,
         secure: false,
         auth: {
-            user: 'competitivedevelopernewsletter@gmail.com',
-            pass: 'ijikdhlklhayevdo',
+            user: 'CHANGE IT',
+            pass: 'CHANGE IT',
         },
     },
 
-    google_client_id: 'CHANGE IT ',
+    google_client_id: 'CHANGE IT',
     google_client_secret: 'CHANGE IT',
     google_call_back_url: 'CHANGE IT',
 
