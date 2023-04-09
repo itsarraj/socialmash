@@ -1,5 +1,5 @@
 node_modules/
 production_log/
 dump.rdb
-
+logDirectory/
 
