@@ -7,7 +7,7 @@ const logDirectory = path.join(__dirname, '../production_log');
 fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory);
 
 const accessLogStream = rfs.createStream('access.log', {
-    interval: '1hour',
+    interval: '1d',
     path: logDirectory,
 });
 
@@ -59,9 +59,14 @@ const production = {
     jwt_secret: process.env.SOCIALMASH_JWT_SECRET,
     morgan: {
         mode: 'combined',
-        options: { stream: accessLogStream },
+        options: {
+            stream: accessLogStream,
+        },
     },
 };
+
+// module.exports = development;
+// module.exports = production;
 
 module.exports =
     eval(process.env.SOCIALMASH_ENVIRONMENT) == undefined

@@ -4,6 +4,8 @@ const env = require('./config/environment');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser'); // Middleware for handling cookies
 const app = express(); // Create an instance of Express app
+require('./config/view-helpers')(app);
+
 const port = 8000; // Port number for the server to listen on
 const expressLayouts = require('express-ejs-layouts'); // Middleware for handling EJS layouts
 const db = require('./config/mongoose'); // Mongoose for connecting to MongoDB

@@ -26,10 +26,19 @@ module.exports.update = async function (req, res) {
                 user.email = req.body.email;
                 if (req.file) {
                     //    file check starts here
-                    const filePath = path.join(__dirname, '..', user.avatar);
-                    console.log(filePath);
-                    if (user.avatar && fs.existsSync(filePath)) {
-                        fs.unlinkSync(path.join(__dirname, '..', user.avatar));
+                    try {
+                        let currAvatarPath = path.join(
+                            __dirname,
+                            '..',
+                            user.avatar
+                        );
+                        if (fs.existsSync(currAvatarPath)) {
+                            fs.unlinkSync(
+                                path.join(__dirname, '..', user.avatar)
+                            );
+                        }
+                    } catch (error) {
+                        console.log("File Doesn't Exist :: ", error);
                     }
 
                     /**

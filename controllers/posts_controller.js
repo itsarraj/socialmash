@@ -1,6 +1,7 @@
 const Post = require('../models/post');
 const Comment = require('../models/comment');
 const User = require('../models/user');
+const Like = require('../models/like');
 
 module.exports.createpost = async function (req, res) {
     try {

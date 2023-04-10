@@ -1,6 +1,5 @@
-<link rel="stylesheet" href="./css/home.css" />
-<link rel="stylesheet" href="./css/chat_box.css" />
-<!-- <meta http-equiv="refresh" content="1" />. -->
+<link rel="stylesheet" href="<%= assetPath('css/home.css')%>" />
+<link rel="stylesheet" href="<%= assetPath('css/chat_box.css')%>" />
 
 <div id="home-container">
     <section id="feed-posts">
@@ -31,9 +30,9 @@
     <%- include('_chat_box')-%>
 </div>
 
-<script src="/js/home_comment.js"></script>
-<script src="/js/home_post.js"></script>
-<script src="js/toggle_likes.js"></script>
+<script src="<%= assetPath('/js/home_comment.js')%>"></script>
+<script src="<%= assetPath('/js/home_post.js')%>"></script>
+<script src="<%= assetPath('js/toggle_likes.js')%>"></script>
 
 <script>
     $('.toggle-like-button').each(function () {
@@ -45,7 +44,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.6.1/socket.io.js"
     integrity="sha512-xbQU0+iHqhVt7VIXi6vBJKPh3IQBF5B84sSHdjKiSccyX/1ZI7Vnkt2/8y8uruj63/DVmCxfUNohPNruthTEQA=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="/js/chat_engine.js"></script>
+
+<script src="<%= assetPath('js/chat_engine.js')%>"></script>
 
 <% if (locals.user){ %>
 <script>
