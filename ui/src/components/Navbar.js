@@ -1,47 +1,45 @@
 import styles from '../styles/navbar.module.css';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
     return (
         <div className={styles.nav}>
             {/* left navbar */}
             <div className={styles.leftNavbar}>
-                <a
-                    className={styles.logo}
-                    href="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/768px-Instagram_logo_2022.svg.png"
-                >
+                <Link className={styles.logo} to="/">
                     <img
                         className={styles.logoIcons}
                         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2I75rxUUGe78wcrBLRtUg5NAoqSCJf88-Tg&usqp=CAU"
                         alt="aaa"
                     />
-                </a>
+                </Link>
             </div>
             {/* right navbar */}
             <div className={styles.rightNavbar}>
                 <div className={styles.user}>
-                    <a href="/">
+                    <Link to="/">
                         <img
                             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2I75rxUUGe78wcrBLRtUg5NAoqSCJf88-Tg&usqp=CAU"
                             alt="aa"
                             className={styles.userProfilePicture}
                         />
-                    </a>
+                    </Link>
                     <span>Animesh Raj</span>
                 </div>
 
                 <div className={styles.navLinks}>
                     <ul>
                         <li>
-                            <a href="/">login</a>
+                            <Link to="/login">login</Link>
                         </li>
                         <li>
-                            <a href="/">logout</a>
+                            <Link to="/">logout</Link>
                         </li>
                         <li>
-                            <a href="/">register</a>
+                            <Link to="/signin">signin</Link>
                         </li>
                         <li>
-                            <a href="/"></a>
+                            <Link to="/">/</Link>
                         </li>
                     </ul>
                 </div>

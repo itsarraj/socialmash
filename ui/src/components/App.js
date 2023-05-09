@@ -3,7 +3,8 @@ import { useEffect } from 'react';
 import { getPosts } from '../api/index';
 import { Navbar } from './index';
 import styles from '../styles/app.module.css';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
+import { Login, Home, Signin } from '../pages/index';
 
 const About = () => {
     return (
@@ -32,8 +33,19 @@ function App() {
     return (
         <>
             <div className={styles.app}>
-                <Navbar />
-                <h1>Hello</h1>
+                <BrowserRouter>
+                    <Navbar />
+                    <Routes>
+                        {/* <Route path="" element={<Component props={props} />} /> */}
+                        <Route path="/">
+                            <Route index element={<Home />} />
+                            <Route path="/about" element={<h1>about</h1>} />
+                            <Route path="login" element={<Login />} />
+                            <Route path="signin" element={<Signin />} />
+                            <Route path="*" element={<h1>404</h1>} />
+                        </Route>
+                    </Routes>
+                </BrowserRouter>
             </div>
         </>
     );
