@@ -4,7 +4,7 @@ import { getPosts } from '../api/index';
 import { Navbar } from './index';
 import styles from '../styles/app.module.css';
 import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
-import { Login, Home, Signin } from '../pages/index';
+import { Login, Home, Signin, NotFound } from '../pages/index';
 
 const About = () => {
     return (
@@ -42,7 +42,7 @@ function App() {
                             <Route path="/about" element={<h1>about</h1>} />
                             <Route path="login" element={<Login />} />
                             <Route path="signin" element={<Signin />} />
-                            <Route path="*" element={<h1>404</h1>} />
+                            <Route path="*" element={<NotFound />} />
                         </Route>
                     </Routes>
                 </BrowserRouter>

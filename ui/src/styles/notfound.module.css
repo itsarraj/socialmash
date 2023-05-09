@@ -1,0 +1,75 @@
+.container {
+    /* width: 1468px;
+    height: 475px; */
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #0b1422;
+    margin-top: 40px;
+    border-radius: 20px;
+    padding: 20px 40px;
+    background-color: #0b1422;
+}
+
+.container .error {
+    /* ERROR */
+
+    width: 141px;
+    height: 29px;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 75px;
+    /* or 312% */
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.container .fourofour {
+    /* 404 */
+
+    height: 475px;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 288px;
+    line-height: 70px;
+    /* or 24% */
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+
+    color: #ffffff;
+
+    text-shadow: 0px 4px 6px rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(3px);
+    /* Note: backdrop-filter has minimal browser support */
+}
+.container .somethingwentwrong {
+    /* Something went Wrong */
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 40px;
+    /* or 167% */
+
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+
+    color: rgba(255, 255, 255, 0.75);
+}
