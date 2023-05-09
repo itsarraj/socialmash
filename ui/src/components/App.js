@@ -1,5 +1,9 @@
 import { useEffect } from 'react';
+
 import { getPosts } from '../api/index';
+import { Navbar } from './index';
+import styles from '../styles/app.module.css';
+
 function App() {
     useEffect(() => {
         const fetchPosts = async () => {
@@ -9,9 +13,12 @@ function App() {
         fetchPosts();
     }, []);
     return (
-        <div className="App">
-            <h1>Hello</h1>
-        </div>
+        <>
+            <div className={styles.app}>
+                <Navbar />
+                <h1>Hello</h1>
+            </div>
+        </>
     );
 }
 

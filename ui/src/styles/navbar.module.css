@@ -1,0 +1,96 @@
+.nav {
+    position: fixed;
+    display: flex;
+    background: #0b1422;
+    padding: 10px 20px;
+    align-items: center;
+    justify-content: space-between;
+    width: 80%;
+    max-width: 80%;
+    border: 1px solid rgba(red, green, blue, 0);
+    border-radius: 5px;
+}
+
+.logo {
+    color: #fff;
+    font-size: 35px;
+}
+.logoIcons {
+    size: 5px;
+    /* font-size: 40px; */
+    color: #ece60e;
+}
+.logoIcons {
+    height: 5vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.user {
+    color: #fff;
+    font-size: 25px;
+}
+.userProfilePicture {
+    size: 5px;
+    /* font-size: 40px; */
+    color: #ece60e;
+}
+.userProfilePicture {
+    height: 5vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav .rightNavbar {
+    display: flex;
+    color: #fff;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 22px;
+}
+
+.rightNavbar .navLinks {
+    display: flex;
+    color: #46ff83;
+
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 22px;
+}
+.nav .userProfilePicture {
+    height: 40px;
+}
+.nav .user {
+    display: flex;
+    align-items: center;
+}
+.nav span {
+    margin-left: 10px;
+}
+.nav .navLinks ul {
+    display: flex;
+    list-style-type: none;
+}
+.nav .navLinks ul li {
+    padding: 0 4px;
+}
+.nav .navLinks ul li a {
+    text-decoration: none;
+    color: #46ff83;
+}
+.nav .navLinks ul li a:hover {
+    padding-left: 14px;
+    text-decoration: underline;
+}
+.nav .navLinks ul li:hover {
+    cursor: pointer;
+}
+
+.nav .leftNavbar {
+    padding-left: 14px;
+    padding-right: 14px;
+}
