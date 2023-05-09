@@ -3,6 +3,23 @@ import { useEffect } from 'react';
 import { getPosts } from '../api/index';
 import { Navbar } from './index';
 import styles from '../styles/app.module.css';
+import { BrowserRouter, Route } from 'react-router-dom';
+
+const About = () => {
+    return (
+        <>
+            <div></div>
+        </>
+    );
+};
+
+const UserInfo = () => {
+    return (
+        <>
+            <div></div>
+        </>
+    );
+};
 
 function App() {
     useEffect(() => {
