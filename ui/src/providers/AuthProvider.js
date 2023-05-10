@@ -4,7 +4,7 @@ import { useProvideAuth } from '../hooks/index';
 const initialState = {
     user: null,
     login: () => {},
-    login: () => {},
+    logout: () => {},
     loading: true,
 };
 

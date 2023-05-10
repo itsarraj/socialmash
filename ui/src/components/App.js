@@ -26,11 +26,11 @@ const UserInfo = () => {
 
 function App() {
     useEffect(() => {
-        const fetchPosts = async () => {
-            const response = await getPosts();
-            console.log(response);
-        };
-        fetchPosts();
+        // const fetchPosts = async () => {
+        //     const response = await getPosts();
+        //     console.log(response);
+        // };
+        // fetchPosts();
     }, []);
     return (
         <>
