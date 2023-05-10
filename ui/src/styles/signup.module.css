@@ -14,14 +14,14 @@
     border-radius: 8px;
 }
 
-.signinHeaderContainer {
+.signupHeaderContainer {
     display: flex;
     flex-direction: column;
     padding: 0px;
     gap: 16px;
 }
 
-.signinHeader {
+.signupHeader {
     font-style: normal;
     font-weight: 600;
     font-size: 28px;

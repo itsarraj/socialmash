@@ -33,18 +33,25 @@ const Navbar = () => {
 
                 <div className={styles.navLinks}>
                     <ul>
-                        <li>
-                            <Link to="/login">login</Link>
-                        </li>
-                        <li>
-                            <Link to="/">logout</Link>
-                        </li>
-                        <li>
-                            <Link to="/signin">signin</Link>
-                        </li>
-                        <li>
-                            <Link to="/">/</Link>
-                        </li>
+                        {auth.user ? (
+                            <>
+                                <li>
+                                    <Link onClick={auth.logout} to="/">
+                                        logout
+                                    </Link>
+                                </li>
+                            </>
+                        ) : (
+                            <>
+                                <li>
+                                    <Link to="/login">login</Link>
+                                </li>
+
+                                <li>
+                                    <Link to="/signup">signup</Link>
+                                </li>
+                            </>
+                        )}
                     </ul>
                 </div>
             </div>

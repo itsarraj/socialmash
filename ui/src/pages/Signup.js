@@ -1,13 +1,13 @@
-import styles from '../styles/signin.module.css';
+import styles from '../styles/signup.module.css';
 
-const Signin = () => {
+const Signup = () => {
     return (
         <>
             <div className={styles.container}>
                 {/*  */}
-                <form className={styles.signinForm}>
-                    <div className={styles.signinHeaderContainer}>
-                        <span className={styles.signinHeader}>Signin</span>
+                <form className={styles.signupForm}>
+                    <div className={styles.signupHeaderContainer}>
+                        <span className={styles.signupHeader}>Signup</span>
                     </div>
                     {/*  */}
                     <div className={styles.fieldContainer}>
@@ -32,7 +32,7 @@ const Signin = () => {
                     </div>
                     {/*  */}
                     <div className={styles.buttonContainer}>
-                        <button className={styles.button}>signin</button>
+                        <button className={styles.button}>Signup</button>
                     </div>
                 </form>
             </div>
@@ -40,4 +40,4 @@ const Signin = () => {
     );
 };
 
-export default Signin;
+export default Signup;
