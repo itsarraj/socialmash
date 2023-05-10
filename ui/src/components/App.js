@@ -1,37 +1,21 @@
 import { useEffect } from 'react';
 
 import { getPosts } from '../api/index';
-import { Navbar } from './index';
+import { Loader, Navbar } from './index';
 import styles from '../styles/app.module.css';
 import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
 import { Login, Home, Signin, NotFound } from '../pages/index';
 
 import toast, { Toaster } from 'react-hot-toast';
-
-const About = () => {
-    return (
-        <>
-            <div></div>
-        </>
-    );
-};
-
-const UserInfo = () => {
-    return (
-        <>
-            <div></div>
-        </>
-    );
-};
+import { useAuth } from '../hooks/index';
 
 function App() {
-    useEffect(() => {
-        // const fetchPosts = async () => {
-        //     const response = await getPosts();
-        //     console.log(response);
-        // };
-        // fetchPosts();
-    }, []);
+    const auth = useAuth();
+
+    if (auth.loading) {
+        return <Loader />;
+    }
+
     return (
         <>
             <div className={styles.app}>
