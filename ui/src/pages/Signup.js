@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useAuth } from '../hooks';
 import styles from '../styles/signup.module.css';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
 
 const Signup = () => {
@@ -53,6 +53,10 @@ const Signup = () => {
 
         setSigningUp(false);
     };
+
+    if (auth.user) {
+        return <Navigate to="/" />;
+    }
 
     return (
         <>

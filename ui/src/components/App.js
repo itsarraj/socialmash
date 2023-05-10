@@ -3,11 +3,23 @@ import { useEffect } from 'react';
 import { getPosts } from '../api/index';
 import { Loader, Navbar } from './index';
 import styles from '../styles/app.module.css';
-import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
-import { Login, Home, Signup, NotFound } from '../pages/index';
+import {
+    BrowserRouter,
+    Route,
+    Routes,
+    Link,
+    Navigate,
+    Outlet,
+} from 'react-router-dom';
+import { Login, Home, Signup, NotFound, Settings } from '../pages/index';
 
 import toast, { Toaster } from 'react-hot-toast';
 import { useAuth } from '../hooks/index';
+
+function PrivateRoutes() {
+    const auth = useAuth();
+    return auth.user ? <Outlet /> : <Navigate to="/login" />;
+}
 
 function App() {
     const auth = useAuth();
@@ -28,6 +40,9 @@ function App() {
                             <Route path="/about" element={<h1>about</h1>} />
                             <Route path="login" element={<Login />} />
                             <Route path="signup" element={<Signup />} />
+                            <Route element={<PrivateRoutes />}>
+                                <Route element={<Settings />} path="settings" />
+                            </Route>
                             <Route path="*" element={<NotFound />} />
                         </Route>
                     </Routes>

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import styles from '../styles/login.module.css';
 import toast, { Toaster } from 'react-hot-toast';
 import { useAuth } from '../hooks';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -32,6 +32,10 @@ const Login = () => {
 
         setLoggingIn(false);
     };
+
+    if (auth.user) {
+        return <Navigate to="/" />;
+    }
 
     return (
         <>

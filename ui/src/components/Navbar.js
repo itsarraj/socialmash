@@ -20,7 +20,7 @@ const Navbar = () => {
             <div className={styles.rightNavbar}>
                 {auth.user && (
                     <div className={styles.user}>
-                        <Link to="/">
+                        <Link to="/settings ">
                             <img
                                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2I75rxUUGe78wcrBLRtUg5NAoqSCJf88-Tg&usqp=CAU"
                                 alt="aa"
