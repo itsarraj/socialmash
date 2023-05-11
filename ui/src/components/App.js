@@ -11,7 +11,14 @@ import {
     Navigate,
     Outlet,
 } from 'react-router-dom';
-import { Login, Home, Signup, NotFound, Settings } from '../pages/index';
+import {
+    Login,
+    Home,
+    Signup,
+    NotFound,
+    Settings,
+    UserProfile,
+} from '../pages/index';
 
 import toast, { Toaster } from 'react-hot-toast';
 import { useAuth } from '../hooks/index';
@@ -40,9 +47,18 @@ function App() {
                             <Route path="/about" element={<h1>about</h1>} />
                             <Route path="login" element={<Login />} />
                             <Route path="signup" element={<Signup />} />
+
                             <Route element={<PrivateRoutes />}>
                                 <Route element={<Settings />} path="settings" />
                             </Route>
+
+                            <Route element={<PrivateRoutes />}>
+                                <Route
+                                    element={<UserProfile />}
+                                    path="user/:userId"
+                                />
+                            </Route>
+
                             <Route path="*" element={<NotFound />} />
                         </Route>
                     </Routes>
